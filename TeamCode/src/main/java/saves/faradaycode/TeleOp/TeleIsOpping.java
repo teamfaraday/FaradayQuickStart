@@ -1,8 +1,9 @@
 package saves.faradaycode.TeleOp;
 import saves.faradaycode.OpModes;
-import saves.faradaycode.components.ServoSave;
+import com.qualcomm.robotcore.eventloop.opmode.*;
 
-@com.qualcomm.robotcore.eventloop.opmode.TeleOp(name = "TeleIsOpping")
+@Disabled
+@TeleOp(name = "TeleIsOpping")
 public class TeleIsOpping extends OpModes {
     public void runOpMode(){
         //code here is setup like constants

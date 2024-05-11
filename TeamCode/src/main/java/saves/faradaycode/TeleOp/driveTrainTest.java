@@ -2,9 +2,10 @@ package saves.faradaycode.TeleOp;
 
 import saves.faradaycode.components.*;
 import saves.faradaycode.OpModes;
+import com.qualcomm.robotcore.eventloop.opmode.*;
 
-
-@com.qualcomm.robotcore.eventloop.opmode.TeleOp(name = "driveTrainTest")
+@Disabled
+@TeleOp(name = "driveTrainTest")
 public class driveTrainTest extends OpModes {
     public DriveTrainTeleOp driveTrainTeleOp;
 
