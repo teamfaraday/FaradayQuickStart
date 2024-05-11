@@ -3,8 +3,6 @@ package org.firstinspires.ftc.teamcode.faradaycode.Autonomous;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.geometry.Vector2d;
 
-import org.firstinspires.ftc.teamcode.faradaycode.OpModes;
-
 import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
 import org.firstinspires.ftc.teamcode.roadrunner.trajectorysequence.TrajectorySequence;
 import org.firstinspires.ftc.vision.VisionPortal;
@@ -12,6 +10,8 @@ import org.firstinspires.ftc.vision.tfod.TfodProcessor;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.BuiltinCameraDirection;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.teamcode.roadrunner.drive.SampleMecanumDrive;
+
+import saves.faradaycode.OpModes;
 
 
 import java.util.List;
@@ -38,7 +38,8 @@ public class redClose extends OpModes {
     public boolean isRight = false;
 
     public void runOpMode() {
-        super.turnOn(false);
+        super.turnOn();
+        super.driveTrainTeleOp.autonDirs();
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
 
         initTfod(false);
@@ -64,9 +65,9 @@ public class redClose extends OpModes {
 
         waitForStart();
 
-        purplePixel.init();
-        slide.slowUp();
-        bannerBox.intakePos(1);
+        //purplePixel.init();
+        //slide.slowUp();
+        //bannerBox.intakePos(1);
 
         if (isStopRequested()) return;
 
@@ -138,10 +139,10 @@ public class redClose extends OpModes {
         if (currentRecognitions.size() != 0 && !stopped) {
 
             isLeft = true;
-            slide.antiGrav();
+          //  slide.antiGrav();
 
         } else {
-            slide.antiGrav();
+            //slide.antiGrav();
             drive.followTrajectorySequence(testCent);
 
             currentRecognitions = tfod.getRecognitions();
@@ -156,22 +157,22 @@ public class redClose extends OpModes {
         if (isLeft) {drive.followTrajectorySequence(purpleLeft);}
         if (isCent) {drive.followTrajectorySequence(purpleCent);}
         if (isRight) {drive.followTrajectorySequence(testAndPurpleRight);}
-        purplePixel.release();
+        //purplePixel.release();
         sleep(1000);
         if (isLeft) {drive.followTrajectorySequence(yellowLeft);}
         if (isCent) {drive.followTrajectorySequence(yellowCent);}
         if (isRight) {drive.followTrajectorySequence(yellowRight);}
         isSlow = true;
-        slide.up();
+      //  slide.up();
         sleep(1600);
-        slide.antiGrav();
-        bannerBox.dropPos(1);
+      //  slide.antiGrav();
+       // bannerBox.dropPos(1);
         sleep(1000);
-        bannerBox.intakePos(1);
+       // bannerBox.intakePos(1);
         isSlow = true;
-        slide.down();
+       // slide.down();
         sleep(1400);
-        slide.antiGrav();
+       // slide.antiGrav();
         if (isLeft) {drive.followTrajectorySequence(parkLeft);}
         if (isCent) {drive.followTrajectorySequence(parkCent);}
         if (isRight) {drive.followTrajectorySequence(parkRight);}

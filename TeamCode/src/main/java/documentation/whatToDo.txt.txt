@@ -1,0 +1,5 @@
+1: clone repo
+2: copy and paste everything under the saves folder into the org.firstinspires.ftc.teamcode folder
+3: fix all import statements
+4: remove the @Disabled tag on anything you want to use
+5: edit files to your liking!
