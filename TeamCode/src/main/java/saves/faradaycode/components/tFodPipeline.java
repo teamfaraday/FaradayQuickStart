@@ -11,22 +11,24 @@ import org.firstinspires.ftc.vision.VisionPortal;
 import org.firstinspires.ftc.vision.tfod.TfodProcessor;
 
 import java.util.List;
-//IMPORTANT!!!!!! add your tflite modules to FtcRobotController.assets
-//@TBD
-public class tFodPipeline {
 
-    public String webCam = "Webcam 1";
+import saves.faradaycode.deviceNames;
+
+//IMPORTANT!!!!!! add your tflite modules to FtcRobotController.assets
+public class tFodPipeline implements deviceNames {
+
+    public String webCam = webCamName;
     protected static final boolean USE_WEBCAM = true;
     public TfodProcessor tfod;
     protected VisionPortal visionPortal;
-    private static final String BLUE_TFOD_MODEL_ASSET = "bb.tflite";
+    private static final String BLUE_TFOD_MODEL_ASSET = blueAsset;
     private static final String[] BLUE_LABELS = {
-            "b",
+            blueLabel,
     }   ;
 
-    private static final String RED_TFOD_MODEL_ASSET = "rr.tflite";
+    private static final String RED_TFOD_MODEL_ASSET = redAsset;
     private static final String[] RED_LABELS = {
-            "r",
+            redLabel,
     }   ;
 
     public void telemetryTfod() {
@@ -75,5 +77,10 @@ public class tFodPipeline {
 
         visionPortal = builder.build();
     }
+    /*
+    * List<Recognition> currentRecognitions;
+        currentRecognitions = tFod.tfod.getRecognitions();
+
+        if (currentRecognitions.size() != 0) {blahblahblah}*/
 
 }

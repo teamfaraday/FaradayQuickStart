@@ -21,4 +21,11 @@ public interface deviceNames {
     String rightEncoderName = "hang";
     String frontEncoderName = "intakeA";
 
+    //tFod
+    String webCamName = "Webcam 1";
+    String blueLabel = "b";
+    String redLabel = "r";
+    String blueAsset = "bb.tflite";
+    String redAsset = "rr.tflite";
+
 }

@@ -4,6 +4,8 @@ import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.geometry.Vector2d;
 
 import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
+
+import saves.faradaycode.components.tFodPipeline;
 import saves.roadrunner.trajectorysequence.TrajectorySequence;
 import org.firstinspires.ftc.vision.VisionPortal;
 import org.firstinspires.ftc.vision.tfod.TfodProcessor;
@@ -17,20 +19,7 @@ import saves.faradaycode.OpModes;
 
 @com.qualcomm.robotcore.eventloop.opmode.Autonomous(name = "blueClose")
 public class blueClose extends OpModes {
-
-    public String webCam = "Webcam 1";
-    protected static final boolean USE_WEBCAM = true;
-    public TfodProcessor tfod;
-    protected VisionPortal visionPortal;
-    private static final String BLUE_TFOD_MODEL_ASSET = "bb.tflite";
-    private static final String[] BLUE_LABELS = {
-            "b",
-    }   ;
-
-    private static final String RED_TFOD_MODEL_ASSET = "rr.tflite";
-    private static final String[] RED_LABELS = {
-            "r",
-    }   ;
+    tFodPipeline tFod = new tFodPipeline();
 
     public boolean isLeft = false;
     public boolean isCent = false;
@@ -41,7 +30,7 @@ public class blueClose extends OpModes {
         super.driveTrainTeleOp.autonDirs();
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
 
-        initTfod(true);
+        tFod.initTfod(true);
         telemetry.addData("DS preview on/off", "3 dots, Camera Stream");
         telemetry.addData(">", "Touch Play to start OpMode");
         telemetry.update();
@@ -49,7 +38,7 @@ public class blueClose extends OpModes {
         /*telemetry.addData("Recs", currentRecognitions);
         telemetry.update();*/
 
-        while (opModeInInit()) {telemetryTfod();}
+        while (opModeInInit()) {tFod.telemetryTfod();}
 
         Pose2d startPose = new Pose2d(0, 0, 0);
         Vector2d testLeftPose = new Vector2d(2,5);
@@ -133,8 +122,8 @@ public class blueClose extends OpModes {
 
         drive.followTrajectorySequence(testLeft);
 
-        List<Recognition> currentRecognitions = tfod.getRecognitions();
-        currentRecognitions = tfod.getRecognitions();
+        List<Recognition> currentRecognitions;
+        currentRecognitions = tFod.tfod.getRecognitions();
 
         if (currentRecognitions.size() != 0 && !stopped) {
 
@@ -145,7 +134,7 @@ public class blueClose extends OpModes {
          //   slide.antiGrav();
             drive.followTrajectorySequence(testCent);
 
-            currentRecognitions = tfod.getRecognitions();
+            currentRecognitions = tFod.tfod.getRecognitions();
             if (currentRecognitions.size() != 0 && !stopped) {
                 isCent = true;
             } else {
@@ -177,57 +166,12 @@ public class blueClose extends OpModes {
         if (isCent) {drive.followTrajectorySequence(parkCent);}
         if (isRight) {drive.followTrajectorySequence(parkRight);}
 
-        telemetryTfod();
+        tFod.telemetryTfod();
 
         // Push telemetry to the Driver Station.
         telemetry.update();
     }
 
-    public void telemetryTfod() {
 
-        List<Recognition> currentRecognitions = tfod.getRecognitions();
-        telemetry.addData("# Objects Detected", currentRecognitions.size());
-
-        // Step through the list of recognitions and display info for each one.
-        for (Recognition recognition : currentRecognitions) {
-            double x = (recognition.getLeft() + recognition.getRight()) / 2 ;
-            double y = (recognition.getTop()  + recognition.getBottom()) / 2 ;
-
-            telemetry.addData(""," ");
-            telemetry.addData("Image", "%s (%.0f %% Conf.)", recognition.getLabel(), recognition.getConfidence() * 100);
-            telemetry.addData("- Position", "%.0f / %.0f", x, y);
-            telemetry.addData("- Size", "%.0f x %.0f", recognition.getWidth(), recognition.getHeight());
-        }   // end for() loop
-
-    }   // end method telemetryTfod()
-
-    public void initTfod(boolean isBlue) {
-
-        // Create the TensorFlow processor by using a builder.
-        if (isBlue) {
-            tfod = new TfodProcessor.Builder()
-                    .setModelAssetName(BLUE_TFOD_MODEL_ASSET)
-                    .setModelLabels(BLUE_LABELS)
-                    .build();
-        } else {
-            tfod = new TfodProcessor.Builder()
-                    .setModelAssetName(RED_TFOD_MODEL_ASSET)
-                    .setModelLabels(RED_LABELS)
-                    .build();
-        }
-
-        // Create the vision portal by using a builder.
-        VisionPortal.Builder builder = new VisionPortal.Builder();
-
-        // Set the camera (webcam vs. built-in RC phone camera).
-        if (USE_WEBCAM) {
-            builder.setCamera(hardwareMap.get(WebcamName.class, webCam));
-        } else {
-            builder.setCamera(BuiltinCameraDirection.BACK);
-        }
-        builder.addProcessor(tfod);
-
-        visionPortal = builder.build();
-    }
 
 }
