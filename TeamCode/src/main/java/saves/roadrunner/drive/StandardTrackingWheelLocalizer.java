@@ -12,7 +12,7 @@ import saves.roadrunner.util.Encoder;
 import java.util.Arrays;
 import java.util.List;
 
-import saves.faradaycode.RRConstants;
+import saves.faradaycode.Autonomous.RRConstants;
 
 /*
  * Sample tracking wheel localizer implementation assuming the standard configuration:

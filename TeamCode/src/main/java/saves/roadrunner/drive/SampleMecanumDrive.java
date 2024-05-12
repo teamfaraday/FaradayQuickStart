@@ -26,6 +26,7 @@ import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 import com.qualcomm.robotcore.hardware.VoltageSensor;
 import com.qualcomm.robotcore.hardware.configuration.typecontainers.MotorConfigurationType;
 
+import saves.faradaycode.deviceNames;
 import saves.roadrunner.trajectorysequence.TrajectorySequence;
 import saves.roadrunner.trajectorysequence.TrajectorySequenceBuilder;
 import saves.roadrunner.trajectorysequence.TrajectorySequenceRunner;
@@ -35,7 +36,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import saves.faradaycode.RRConstants;
+import saves.faradaycode.Autonomous.RRConstants;
 
 /*
  * Simple mecanum drive hardware implementation for REV hardware.
@@ -44,7 +45,6 @@ import saves.faradaycode.RRConstants;
 public class SampleMecanumDrive extends MecanumDrive implements RRConstants, saves.faradaycode.deviceNames {
     public static PIDCoefficients TRANSLATIONAL_PID = new PIDCoefficients(6, 0, 0);
     public static PIDCoefficients HEADING_PID = new PIDCoefficients(6, 0, 0);
-
 
     public static double VX_WEIGHT = 1;
     public static double VY_WEIGHT = 1;
