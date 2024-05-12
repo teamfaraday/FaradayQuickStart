@@ -40,9 +40,10 @@ public class autoSave extends OpModes {
         //create trajectories
         TrajectorySequence traj1 = drive.trajectorySequenceBuilder( new Pose2d(0, 0, 0)) //plug in coords of where the robot should be at the moment
                 .strafeTo(new Vector2d(1,1)) // just a strafe
-                .splineTo(new Vector2d(10,10),90) //a spline is a vector + a degree rotation
+                .splineTo(new Vector2d(10,10),Math.toRadians(90)) //a spline is a vector + a degree rotation
                 .forward(1) //self explanatory
                 .back(1) //also self explanatory
+                .turn(Math.toRadians(90)) //also self explanatory
                 .build();
 
         //initiate start coords (all coords are relative based on these start coords)
