@@ -2,9 +2,9 @@ package saves.faradaycode.components;
 
 import com.qualcomm.robotcore.hardware.*;
 
-import saves.faradaycode.OpModes;
+import saves.faradaycode.*;
 
-public class DCMotorSave {
+public class DCMotorSave implements  deviceNames{
 
     //speeds for rotation
     public double power1 = 1;
@@ -18,7 +18,7 @@ public class DCMotorSave {
 
     //inits object and assigns servo names
     public DCMotorSave(HardwareMap hardwareMap) {
-        dummyDCMotor = hardwareMap.dcMotor.get("dummyDCMotor");
+        dummyDCMotor = hardwareMap.dcMotor.get(dummyDCMotorName);
     }
 
     //when called, parse through for motion

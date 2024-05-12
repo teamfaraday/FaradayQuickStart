@@ -2,9 +2,9 @@ package saves.faradaycode.components;
 
 import com.qualcomm.robotcore.hardware.*;
 
-import saves.faradaycode.OpModes;
+import saves.faradaycode.*;
 
-public class CRServoSave {
+public class CRServoSave implements  deviceNames{
 
     //speeds for rotation
     public double power1 = 1;
@@ -18,7 +18,7 @@ public class CRServoSave {
 
     //inits object and assigns servo names
     public CRServoSave(HardwareMap hardwareMap) {
-        dummyCRServo = hardwareMap.crservo.get("dummyCRServo");
+        dummyCRServo = hardwareMap.crservo.get(dummyCRServoName);
     }
 
     //when called, parse through for motion

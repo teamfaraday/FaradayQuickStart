@@ -1,8 +1,9 @@
 package saves.faradaycode.components;
 
 import com.qualcomm.robotcore.hardware.*;
+import saves.faradaycode.*;
 
-public class ServoSave {
+public class ServoSave implements deviceNames {
 
     //values for servo pos
     public double upPos = 1;
@@ -13,7 +14,7 @@ public class ServoSave {
 
     //inits object and assigns servo names
     public ServoSave(HardwareMap hardwareMap) {
-        dummyServo = hardwareMap.get(Servo.class, "dummyServo");
+        dummyServo = hardwareMap.get(Servo.class, dummyServoName);
     }
 
     //what gets called

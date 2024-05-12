@@ -1,9 +1,9 @@
 package saves.faradaycode.components;
 
 import com.qualcomm.robotcore.hardware.*;
-import saves.faradaycode.OpModes;
+import saves.faradaycode.*;
 
-public class DriveTrainTeleOp {
+public class DriveTrainTeleOp implements deviceNames{
 
     //constants
     public double powerRange = 1;
@@ -18,10 +18,10 @@ public class DriveTrainTeleOp {
 
     //inits the object + names
     public DriveTrainTeleOp(HardwareMap hardwareMap) {
-        fL = hardwareMap.get(DcMotor.class, "leftFront");
-        fR = hardwareMap.get(DcMotor.class, "rightFront");
-        bL = hardwareMap.get(DcMotor.class, "leftRear");
-        bR = hardwareMap.get(DcMotor.class, "rightRear");
+        fL = hardwareMap.get(DcMotor.class, leftFrontName);
+        fR = hardwareMap.get(DcMotor.class, rightFrontName);
+        bL = hardwareMap.get(DcMotor.class, leftRearName);
+        bR = hardwareMap.get(DcMotor.class, rightRearName);
         motorInits();
     }
 

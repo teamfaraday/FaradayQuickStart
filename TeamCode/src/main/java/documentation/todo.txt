@@ -1,6 +1,5 @@
 1: fix tfodpipeline
-2: work on RR quickstart
-3: add other pipeliens?
-4: make better documentation
-5: do testing to see whether if statements or just iterating is faster or if it makes a difference
-6: port rr to 1.0
+2: add other pipeliens?
+3: make better documentation
+4: do testing to see whether if statements or just iterating is faster or if it makes a difference
+5: port rr to 1.0
