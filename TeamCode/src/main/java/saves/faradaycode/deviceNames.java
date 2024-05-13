@@ -1,11 +1,12 @@
 package saves.faradaycode;
 
 public interface deviceNames {
+
     //servos
-    String dummyServoName = "dummyServo";
+    String dummyServoName = "dummyServo"; //Expansion hub 2
 
     //motors
-    String dummyDCMotorName = "dummyDCMotor";
+    String dummyDCMotorName = "dummyDCMotor"; //Control hub 1
 
     //crservos
     String dummyCRServoName = "dummyCRServo";

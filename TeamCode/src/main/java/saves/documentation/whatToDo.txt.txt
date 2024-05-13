@@ -3,3 +3,6 @@
 3: fix all import statements
 4: remove the @Disabled tag on anything you want to use
 5: edit files to your liking!
+6: ask the person in charge for help w anything
+
+//road runner docs link: https://rr.brott.dev/docs/v1-0/installation/
