@@ -85,5 +85,6 @@ public class tFodPipeline implements deviceNames {
 
     //        currentRecognitions.get(0).getLabel()
     //         returns name of label
+        
 
 }
