@@ -19,6 +19,7 @@ public class DCMotorSave implements  deviceNames{
     //inits object and assigns servo names
     public DCMotorSave(HardwareMap hardwareMap) {
         dummyDCMotor = hardwareMap.dcMotor.get(dummyDCMotorName);
+        dummyDCMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
 
     //when called, parse through for motion
@@ -41,5 +42,26 @@ public class DCMotorSave implements  deviceNames{
     }
     public void reverse() {
         dummyDCMotor.setPower(power2 * OpModes.nerf * ((OpModes.isSlow) ? slowConst: 1));
+    }
+
+    //for Auto
+    public void activate(double speed) {
+        dummyDCMotor.setPower(speed);
+    }
+
+    public void encoderRun(int ticks) {
+        int encoderPos;
+        encoderPos = dummyDCMotor.getCurrentPosition();
+        encoderPos -= (ticks);
+
+        dummyDCMotor.setTargetPosition(encoderPos);
+        dummyDCMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        while ( dummyDCMotor.isBusy()) {
+            dummyDCMotor.setPower(Math.abs(power1));
+        }
+
+        dummyDCMotor.setPower(0);
+        dummyDCMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 }

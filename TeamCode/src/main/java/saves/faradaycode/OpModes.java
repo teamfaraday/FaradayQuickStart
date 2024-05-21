@@ -1,5 +1,6 @@
 package saves.faradaycode;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 import saves.faradaycode.components.*;
 
@@ -33,7 +34,7 @@ public abstract class OpModes extends LinearOpMode{
     public DriveTrainTeleOp driveTrainTeleOp;
 
     public Nerf Nerf = new Nerf();
-    //public ElapsedTime timeSpent = new ElapsedTime();
+    public ElapsedTime timer = new ElapsedTime();
 
     public boolean stopped = false;
     public static double nerf = 1;
@@ -44,6 +45,8 @@ public abstract class OpModes extends LinearOpMode{
         servoSave = new ServoSave(hardwareMap);
         crServoSave = new CRServoSave(hardwareMap);
         dcMotorSave = new DCMotorSave(hardwareMap);
+
+
 
     }
 

@@ -1,15 +1,16 @@
 package saves.faradaycode.Autonomous;
 
-import com.acmerobotics.roadrunner.geometry.Pose2d;
-import com.acmerobotics.roadrunner.geometry.Vector2d;
+import com.acmerobotics.roadrunner.geometry.*;
 
 import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
 
 import java.util.List;
 
 import saves.faradaycode.OpModes;
+import saves.faradaycode.components.DCMotorSave;
 import saves.faradaycode.components.tFodPipeline;
 import saves.roadrunner.drive.SampleMecanumDrive;
+import saves.roadrunner.drive.StandardTrackingWheelLocalizer;
 import saves.roadrunner.trajectorysequence.TrajectorySequence;
 
 @com.qualcomm.robotcore.eventloop.opmode.Autonomous(name = "autoSave")
@@ -23,6 +24,10 @@ public class autoSave extends OpModes {
         super.turnOn();
         super.driveTrainTeleOp.autonDirs();
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
+        //StandardTrackingWheelLocalizer myLocalizer = new StandardTrackingWheelLocalizer(hardwareMap); //FGURE THIS OUT
+        //also figure out how to pass through odometry pos
+        //figure out more advanced stuffs
+        //read thru rr thingy
 
         //initiate tfod status
         tFod.initTfod(true);
@@ -46,20 +51,29 @@ public class autoSave extends OpModes {
                 .turn(Math.toRadians(90)) //also self explanatory
                 .build();
 
+
+        //drive.getPoseEstimate(); //gets current pos thru rr
+
+
         //initiate start coords (all coords are relative based on these start coords)
         drive.setPoseEstimate( new Pose2d(0, 0, 0));
 
         //sleep for camera to boot up
         sleep(2000);
 
-        //actual auto, you use this to follow traj sequences
-        drive.followTrajectorySequence(traj1);
 
         //tfod detection
         List<Recognition> currentRecognitions;
         currentRecognitions = tFod.tfod.getRecognitions();
+
         if (currentRecognitions.size() != 0 && !stopped) {
-            servoSave.moveDown(); //you can still run normal commands in here
+            dcMotorSave.activate(0.5); //you can still run normal commands in here, you can use this in conjunction with encoders to run synchronous tasks + get precision
+
+            //actual auto, you use this to follow traj sequences
+            drive.followTrajectorySequence(traj1);
+
+            dcMotorSave.deactivate();
+            dcMotorSave.encoderRun(1000);
             isSlow = true;
             sleep(1000);
         }

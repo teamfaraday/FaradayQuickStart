@@ -13,6 +13,7 @@ public class driveTrainTest extends OpModes {
         driveTrainTeleOp = new DriveTrainTeleOp(hardwareMap);
 
         waitForStart();
+        timer.reset();
 
         while (opModeIsActive() && !stopped){
             isSlow = gamepad1.right_trigger > 0.6;

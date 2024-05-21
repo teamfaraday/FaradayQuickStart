@@ -42,4 +42,9 @@ public class CRServoSave implements  deviceNames{
     public void reverse() {
         dummyCRServo.setPower(power2 * OpModes.nerf * ((OpModes.isSlow) ? slowConst: 1));
     }
+
+    //for Auto
+    public void activate(double speed) {
+        dummyCRServo.setPower(speed);
+    }
 }
