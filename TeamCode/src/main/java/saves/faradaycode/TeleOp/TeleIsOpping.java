@@ -21,8 +21,7 @@ public class TeleIsOpping extends OpModes {
             telemetry.update();
 
             //sets up slow vals and nerf vals + creates failsafe exit code
-            isSlow = gamepad1.right_trigger > 0.6;
-            nerf = Nerf.iterate(gamepad1.dpad_right, gamepad1.dpad_left);
+            NerfSlow.iterate(gamepad1.left_trigger, gamepad1.dpad_right, gamepad1.dpad_left);
             stopped = gamepad1.left_bumper && gamepad1.left_trigger > 0.6 && gamepad1.right_bumper && gamepad1.right_trigger > 0.6;
 
             //iterators

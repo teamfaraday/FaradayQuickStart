@@ -16,7 +16,7 @@ public class driveTrainTest extends OpModes {
         timer.reset();
 
         while (opModeIsActive() && !stopped){
-            isSlow = gamepad1.right_trigger > 0.6;
+            NerfSlow.iterate(gamepad1.left_trigger, gamepad1.dpad_right, gamepad1.dpad_left);
             driveTrainTeleOp.iterate(gamepad1.left_stick_y, -gamepad1.right_stick_x, -gamepad1.left_stick_x);
         }
     }

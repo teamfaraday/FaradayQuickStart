@@ -32,10 +32,10 @@ public class DriveTrainTeleOp implements deviceNames{
         double frontRightPower = ((forwardSpeed + strafeSpeed + turnSpeed)) / denominator;
         double backLeftPower = ((forwardSpeed + strafeSpeed - turnSpeed)) / denominator;
         double backRightPower = ((forwardSpeed - strafeSpeed + turnSpeed)) / denominator;
-        fL.setPower(frontLeftPower * OpModes.nerf * ((OpModes.isSlow) ? slowConst: 1));
-        bL.setPower(backLeftPower * OpModes.nerf * ((OpModes.isSlow) ? slowConst: 1));
-        fR.setPower(frontRightPower * OpModes.nerf * ((OpModes.isSlow) ? slowConst: 1));
-        bR.setPower(backRightPower * OpModes.nerf * ((OpModes.isSlow) ? slowConst: 1));
+        fL.setPower(frontLeftPower * OpModes.nerf * ((OpModes.isSlow) ? slowConst : OpModes.slowAmnt));
+        bL.setPower(backLeftPower * OpModes.nerf * ((OpModes.isSlow) ? slowConst : OpModes.slowAmnt));
+        fR.setPower(frontRightPower * OpModes.nerf * ((OpModes.isSlow) ? slowConst : OpModes.slowAmnt));
+        bR.setPower(backRightPower * OpModes.nerf * ((OpModes.isSlow) ? slowConst : OpModes.slowAmnt));
     }
 
     //set up motors
