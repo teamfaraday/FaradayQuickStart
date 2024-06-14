@@ -34,13 +34,13 @@ public class CRServoSave implements  deviceNames{
 
     //functions
     public void activate() {
-        dummyCRServo.setPower(power1 * OpModes.nerf * ((OpModes.isSlow) ? slowConst: 1));
+        dummyCRServo.setPower(power1 * OpModes.nerf * ((OpModes.isSlow) ? slowConst: OpModes.slowAmnt));
     }
     public void deactivate() {
         dummyCRServo.setPower(0);
     }
     public void reverse() {
-        dummyCRServo.setPower(power2 * OpModes.nerf * ((OpModes.isSlow) ? slowConst: 1));
+        dummyCRServo.setPower(power2 * OpModes.nerf * ((OpModes.isSlow) ? slowConst: OpModes.slowAmnt));
     }
 
     //for Auto

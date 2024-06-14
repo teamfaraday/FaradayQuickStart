@@ -35,13 +35,13 @@ public class DCMotorSave implements  deviceNames{
 
     //functions
     public void activate() {
-        dummyDCMotor.setPower(power1 * OpModes.nerf * ((OpModes.isSlow) ? slowConst: 1));
+        dummyDCMotor.setPower(power1 * OpModes.nerf * ((OpModes.isSlow) ? slowConst: OpModes.slowAmnt));
     }
     public void deactivate() {
         dummyDCMotor.setPower(0);
     }
     public void reverse() {
-        dummyDCMotor.setPower(power2 * OpModes.nerf * ((OpModes.isSlow) ? slowConst: 1));
+        dummyDCMotor.setPower(power2 * OpModes.nerf * ((OpModes.isSlow) ? slowConst: OpModes.slowAmnt));
     }
 
     //for Auto
